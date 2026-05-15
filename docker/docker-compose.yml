@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  app:
+    image: kychan6127/soptkathon-android2:latest
+    container_name: soptkathon-android2-app
+    env_file:
+      - .env
+    restart: "unless-stopped"
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      # application.yml 적용 후 application-dev.yml 적용.
+      SPRING_PROFILES_ACTIVE: dev
+      # AWS_ACCESS_KEY: ${AWS_ACCESS_KEY}
+      # AWS_SECRET_KEY: ${AWS_SECRET_KEY}
+      TZ: Asia/Seoul
+      # RDS 연결 정보
+      DB_HOST: ${DB_HOST}
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      # JDBC URL을 직접 주입하는 경우
+      SPRING_DATASOURCE_URL: jdbc:mysql://${DB_HOST}:3306/${DB_NAME}?useSSL=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
