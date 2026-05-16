@@ -6,7 +6,7 @@ import org.sopt.soptkathonandroid2.domain.user.entity.User;
 import org.sopt.soptkathonandroid2.domain.mission.entity.Mission;
 import org.sopt.soptkathonandroid2.global.common.entity.BaseCreatedEntity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -27,6 +27,23 @@ public class UserMission extends BaseCreatedEntity {
     @JoinColumn(name = "mission_id")
     private Mission mission;
 
+    @Enumerated(EnumType.STRING)
+    private MissionStatus status;
+
     @Column(name = "completed_at")
-    private LocalDate completedAt;
+    private LocalDateTime completedAt;
+
+    public static UserMission create(User user, Mission mission) {
+        return UserMission.builder()
+                .user(user)
+                .mission(mission)
+                .status(MissionStatus.IN_PROGRESS)
+                .completedAt(null)
+                .build();
+    }
+
+    public void complete() {
+        this.status = MissionStatus.COMPLETED;
+        this.completedAt = LocalDateTime.now();
+    }
 }
