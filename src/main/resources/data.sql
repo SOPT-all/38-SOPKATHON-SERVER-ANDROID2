@@ -26,7 +26,7 @@ INSERT INTO users (id, nickname, dubi_type, score, created_at, updated_at) VALUE
 -- missions (미션)
 -- ============================================
 INSERT INTO missions (id, title, description, difficulty, reward_score) VALUES
-(1,  '커튼 열기',                '오늘 하루를 시작하며 방 안 커튼을 열어 바깥 햇빛을 바라보세요.', 'EASY',   1),
+(1,  '커튼 열기',                '하늘 사진 찍기.', 'EASY',   1),
 (2,  '창문 열기',                '오늘 하루를 시작하며 방 안 창문을 열어 바람을 쐬어보세요.',     'EASY',   1),
 (3,  '물 한 잔 마시기',          '몸과 마음을 깨우기 위해 천천히 물 한 잔을 마셔보세요.',         'EASY',   1),
 (4,  '좋아하는 음악 듣기',       '좋아하는 음악 한 곡을 들으며 오늘 기분을 체크해보세요.',       'EASY',   1),
