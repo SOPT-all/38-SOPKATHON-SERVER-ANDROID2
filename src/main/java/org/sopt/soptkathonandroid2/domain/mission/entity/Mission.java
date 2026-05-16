@@ -10,7 +10,7 @@ import org.sopt.soptkathonandroid2.global.common.entity.BaseCreatedEntity;
 @Getter
 @Entity
 @Table(name = "missions")
-public class Mission extends BaseCreatedEntity {
+public class Mission{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
