@@ -19,6 +19,8 @@ public record MissionCompletedResponse(
         @Schema(description = "완료한 미션 수", example = "7")
         Integer missionCompletedCount,
 
+        Integer level,
+
         @Schema(description = "누적 이동 거리 (사용자 누적 점수 x 10)", example = "70")
         Integer movedDistance,
 
@@ -29,7 +31,8 @@ public record MissionCompletedResponse(
     public static MissionCompletedResponse of(
             Long userId,
             Integer score,
-            List<UserMission> completedUserMissions
+            List<UserMission> completedUserMissions,
+            int level
     ) {
         List<CompletedMission> missions = completedUserMissions.stream()
                 .map(CompletedMission::from)
@@ -38,6 +41,7 @@ public record MissionCompletedResponse(
         return new MissionCompletedResponse(
                 userId,
                 missions.size(),
+                level,
                 score * 10,
                 missions
         );

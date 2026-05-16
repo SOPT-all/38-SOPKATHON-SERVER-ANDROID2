@@ -45,6 +45,15 @@ public class MissionService {
 
         List<UserMission> completedUserMissions = userMissionRepository.findAllByUserIdAndStatus(request.userId(), MissionStatus.COMPLETED);
 
-        return MissionCompletedResponse.of(request.userId(), user.getScore(), completedUserMissions);
+        return MissionCompletedResponse.of(request.userId(), user.getScore(), completedUserMissions, calculateLevel(user.getScore()));
+    }
+
+    public int calculateLevel(int score) {
+        return switch (score / 10) {
+            case 0 -> 1;
+            case 1 -> 2;
+            case 2 -> 3;
+            default -> 4;
+        };
     }
 }

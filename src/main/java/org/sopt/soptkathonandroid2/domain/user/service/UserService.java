@@ -37,7 +37,7 @@ public class UserService {
                 );
 
         int movedDistance = user.getScore() * DISTANCE_PER_SCORE;
-        int level = calculateLevel(movedDistance);
+        int level = calculateLevel(user.getScore());
 
         List<UserCompletedMissionsResponse.MissionCompletedResponse> missionCompleted =
                 completedUserMissions.stream()
