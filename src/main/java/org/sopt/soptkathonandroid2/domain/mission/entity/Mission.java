@@ -23,6 +23,6 @@ public class Mission{
     @Column(name = "difficulty")
     private MissionDifficulty difficulty;
 
-    @Column(name = "rewarded_score")
-    private int rewardedScore;
+    @Column(name = "reward_score")
+    private int rewardScore;
 }
