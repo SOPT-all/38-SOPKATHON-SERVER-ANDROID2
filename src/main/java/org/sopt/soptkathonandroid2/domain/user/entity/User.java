@@ -23,4 +23,8 @@ public class User extends BaseTimeEntity {
     private DubiTypes dubiType;
 
     private int score;
+
+    public void increaseScore(int score){
+        this.score += score;
+    }
 }
