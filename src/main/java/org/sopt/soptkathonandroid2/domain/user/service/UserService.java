@@ -46,7 +46,7 @@ public class UserService {
 
         return new UserCompletedMissionsResponse(
                 user.getId(),
-                String.valueOf(missionCompleted.size()),
+                missionCompleted.size(),
                 level,
                 movedDistance,
                 missionCompleted

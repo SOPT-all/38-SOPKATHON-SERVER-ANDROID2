@@ -13,7 +13,7 @@ public record UserCompletedMissionsResponse(
         Long userId,
 
         @Schema(description = "완료된 미션 개수", example = "7")
-        String missionCompletedCount,
+        long missionCompletedCount,
 
         @Schema(description = "사용자의 누적 이동 거리에 따른 레벨", example = "4")
         int level,
