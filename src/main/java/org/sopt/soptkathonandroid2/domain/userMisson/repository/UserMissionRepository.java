@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserMissionRepository extends JpaRepository<UserMission, Long> {
@@ -16,4 +17,6 @@ public interface UserMissionRepository extends JpaRepository<UserMission, Long> 
             Long userId,
             MissionStatus status
     );
+    List<UserMission> findAllByUserIdAndStatus(Long userId, MissionStatus status);
+    Optional<UserMission> findByUserIdAndMissionId(Long userId, Long missionId);
 }

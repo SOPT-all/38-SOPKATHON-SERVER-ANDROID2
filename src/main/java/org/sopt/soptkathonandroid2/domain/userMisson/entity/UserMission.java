@@ -32,6 +32,23 @@ public class UserMission extends BaseCreatedEntity {
     @Column(name = "status", nullable = false)
     private MissionStatus status;
 
+    @Enumerated(EnumType.STRING)
+    private MissionStatus status;
+
     @Column(name = "completed_at")
     private LocalDateTime completedAt;
+
+    public static UserMission create(User user, Mission mission) {
+        return UserMission.builder()
+                .user(user)
+                .mission(mission)
+                .status(MissionStatus.IN_PROGRESS)
+                .completedAt(null)
+                .build();
+    }
+
+    public void complete() {
+        this.status = MissionStatus.COMPLETED;
+        this.completedAt = LocalDateTime.now();
+    }
 }
