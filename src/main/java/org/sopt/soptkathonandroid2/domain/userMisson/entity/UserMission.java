@@ -27,6 +27,9 @@ public class UserMission extends BaseCreatedEntity {
     @JoinColumn(name = "mission_id")
     private Mission mission;
 
+    @Enumerated(EnumType.STRING)
+    private MissionStatus status;
+
     @Column(name = "completed_at")
     private LocalDate completedAt;
 }

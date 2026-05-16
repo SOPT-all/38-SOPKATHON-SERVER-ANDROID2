@@ -2,7 +2,6 @@ package org.sopt.soptkathonandroid2.domain.mission.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.sopt.soptkathonandroid2.global.common.entity.BaseCreatedEntity;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
