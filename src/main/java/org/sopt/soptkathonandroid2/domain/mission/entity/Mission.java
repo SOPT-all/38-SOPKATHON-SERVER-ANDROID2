@@ -9,7 +9,8 @@ import lombok.*;
 @Getter
 @Entity
 @Table(name = "missions")
-public class Mission{
+public class Mission {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
