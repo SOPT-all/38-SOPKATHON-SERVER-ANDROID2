@@ -35,11 +35,11 @@ public class UserController {
                     )
             )
     )
-    @GetMapping("/completed-missions")
+    @GetMapping("/completed-missions/{userId}")
     public ResponseEntity<SuccessResponse<UserCompletedMissionsResponse>> getCompletedMissions(
-            @Valid @RequestBody UserCompletedMissionsRequest request
+            @PathVariable Long userId
     ) {
-        UserCompletedMissionsResponse response = userService.getCompletedMissions(request);
+        UserCompletedMissionsResponse response = userService.getCompletedMissions(userId);
 
         return ResponseEntity.ok(
                 SuccessResponse.of(UserSuccessCode.USER_COMPLETED_MISSIONS_FETCHED, response)
