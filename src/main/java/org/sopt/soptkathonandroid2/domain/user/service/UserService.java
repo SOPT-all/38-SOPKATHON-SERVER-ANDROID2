@@ -26,8 +26,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMissionRepository userMissionRepository;
 
-    public UserCompletedMissionsResponse getCompletedMissions(UserCompletedMissionsRequest request) {
-        User user = userRepository.findById(request.userId())
+    public UserCompletedMissionsResponse getCompletedMissions(Long userId) {
+        User user = userRepository.findById(userId)
                 .orElseThrow(() -> new CustomException(GlobalErrorCode.NOT_FOUND));
 
         List<UserMission> completedUserMissions =
