@@ -1,7 +1,9 @@
 package org.sopt.soptkathonandroid2.domain.user.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @Schema(description = "홈 화면 완료 미션 조회 응답")
@@ -38,8 +40,9 @@ public record UserCompletedMissionsResponse(
             @Schema(description = "미션 난이도", example = "HARD")
             String difficulty,
 
-            @Schema(description = "미션 완료 시간", example = "18:00")
-            String completedAt
+            @Schema(description = "미션 완료 시간", example = "18:00", type = "string")
+            @JsonFormat(pattern = "HH:mm")
+            LocalTime completedAt
     ) {
     }
 }

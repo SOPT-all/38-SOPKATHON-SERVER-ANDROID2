@@ -14,7 +14,6 @@ import org.sopt.soptkathonandroid2.global.exception.CustomException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -22,17 +21,12 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class UserService {
 
-    private static final DateTimeFormatter COMPLETED_TIME_FORMATTER =
-            DateTimeFormatter.ofPattern("HH:mm");
+    private static final int DISTANCE_PER_SCORE = 10;
 
     private final UserRepository userRepository;
     private final UserMissionRepository userMissionRepository;
 
     public UserCompletedMissionsResponse getCompletedMissions(UserCompletedMissionsRequest request) {
-        if (request == null || request.userId() == null) {
-            throw new CustomException(GlobalErrorCode.INVALID_INPUT_VALUE);
-        }
-
         User user = userRepository.findById(request.userId())
                 .orElseThrow(() -> new CustomException(GlobalErrorCode.NOT_FOUND));
 
@@ -42,7 +36,7 @@ public class UserService {
                         MissionStatus.COMPLETED
                 );
 
-        int movedDistance = user.getScore() * 10;
+        int movedDistance = user.getScore() * DISTANCE_PER_SCORE;
         int level = calculateLevel(movedDistance);
 
         List<UserCompletedMissionsResponse.MissionCompletedResponse> missionCompleted =
@@ -69,7 +63,7 @@ public class UserService {
                 userMission.getStatus().name(),
                 mission.getDescription(),
                 mission.getDifficulty().name(),
-                userMission.getCompletedAt().format(COMPLETED_TIME_FORMATTER)
+                userMission.getCompletedAt().toLocalTime()
         );
     }
 
